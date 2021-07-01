@@ -12,7 +12,14 @@ app.get('/',(req,res)=>{
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    console.log(socket);
+    socket.on('chat message',(msg)=>{
+        console.log("new message: "+msg);
+    })
+
+
+    socket.on('disconnect',()=>{
+        console.log("user disconnected");
+    })
   });
 
 server.listen(3000,()=>{
